@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:sqlite_database_tasks/controller/helper/db_helper.dart';
 import 'package:sqlite_database_tasks/model/expense_model.dart';
@@ -5,13 +6,46 @@ import 'package:sqlite_database_tasks/model/expense_model.dart';
 class HomeController extends GetxController {
 
   RxList<ExpenseModel> expenseList = <ExpenseModel>[].obs;
+  RxDouble balance = 0.0.obs;
+  RxDouble expense = 0.0.obs;
+  RxDouble income = 0.0.obs;
+  RxString filter = "All".obs;
+  RxBool isIncome = false.obs;
+  TextEditingController txtAmount = TextEditingController();
+  TextEditingController txtCategory = TextEditingController();
 
   @override
   Future<void> onInit() async {
     // await DbHelper.dbHelper.deleteDatabaseFile();
     await DbHelper.dbHelper.myDb;
-    await fetchRecords();
+    await setExpenseList();
     super.onInit();
+  }
+
+  // SET IS INCOME SWITCH
+  void setIsIncomeSwitch(bool value){
+    isIncome.value = value;
+  }
+
+  Future<void> setFilter(String value) async {
+    filter.value = value;
+    setExpenseList();
+  }
+
+
+  // SET EXPENSE LIST BY SELECTED FILTER
+  Future<void> setExpenseList() async {
+    switch(filter.value){
+      case "All":
+        await fetchRecords();
+        break;
+      case "Income":
+        await fetchFilterRecordByIsIncome(true);
+        break;
+      case "Expense":
+        await fetchFilterRecordByIsIncome(false);
+        break;
+    }
   }
 
   // INSERT INTO DATABASE
@@ -25,19 +59,20 @@ class HomeController extends GetxController {
     final isIncomeToInt = isIncome ? 1 : 0;
     await DbHelper.dbHelper.dbInsertRecord(
         amt: amt, category: category, isIncome: isIncomeToInt, date: date);
-    await fetchRecords();
+    await setExpenseList();
   }
 
   // DELETE INTO DATABASE
   Future<void> deleteRecord({required int id}) async {
     await DbHelper.dbHelper.dbDeleteRecord(id);
-    await fetchRecords();
+    await setExpenseList();
   }
 
   // FETCH FROM DATABASE
   Future<void> fetchRecords() async {
     final List listOfRecords = await DbHelper.dbHelper.dbFetchRecord();
     expenseList.value = listOfRecords.map((e) => ExpenseModel.fromDb(e)).toList();
+    await calculateBalance();
   }
 
   // UPDATE RECORD
@@ -52,12 +87,33 @@ class HomeController extends GetxController {
     await DbHelper.dbHelper.dbUpdateRecord(
       id: id,
         amt: amt, category: category, isIncome: isIncomeToInt, date: date);
-    await fetchRecords();
+    setExpenseList();
   }
 
   // FILTER RECORDS
   Future<void> fetchFilterRecordByIsIncome(bool isIncome) async {
     final isIncomeToInt = isIncome ? 1 : 0;
     final List listOfFilterRecords = await DbHelper.dbHelper.dbFetchByFilter(isIncomeToInt);
+    expenseList.value = listOfFilterRecords.map((e) => ExpenseModel.fromDb(e)).toList();
+    await calculateBalance();
+  }
+
+  // CALCULATE BALANCE
+  Future<void> calculateBalance() async {
+    final resultList = await DbHelper.dbHelper.dbFetchRecord();
+    List<ExpenseModel> recordList = resultList.map((e) => ExpenseModel.fromDb(e)).toList();
+    balance.value = 0;
+    expense.value = 0;
+    income.value = 0;
+    for(var current in recordList){
+      current.isIncome ? income.value += current.amount : expense.value += current.amount;
+    }
+    balance.value = income.value - expense.value;
+  }
+
+  void resetControllers() {
+    txtAmount.clear();
+    txtCategory.clear();
+    isIncome.value = false;
   }
 }

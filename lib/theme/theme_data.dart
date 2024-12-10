@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 
-const Color first = Color(0xFFE38E49);
-const Color second = Color(0xFF0A3981);
-const Color third = Color(0xFF1F509A);
-const Color fourth = Color(0xFFD4EBF8);
+const Color primary = Color(0xFF0A3981);
+const Color secondary = Color(0xFF1F509A);
+const Color third = Color(0xFFE38E49);
+const Color background = Color(0xFF22212e);
 
 class AppTheme {
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: second,
-    scaffoldBackgroundColor: fourth,
+    primaryColor: primary,
+    scaffoldBackgroundColor: background,
+
+    dialogBackgroundColor: background,
+
 
     // APPBAR
     appBarTheme: const AppBarTheme(
-      backgroundColor: second,
-      elevation: 10,
+      backgroundColor: Colors.transparent,
       shadowColor: Colors.black54
     ),
 
     // FLOATING ACTION BUTTON
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: second,
+      backgroundColor: primary,
       foregroundColor: Colors.white,
       shape: CircleBorder(),
     ),
@@ -28,10 +30,10 @@ class AppTheme {
     // COLOR SCHEME
     colorScheme: const ColorScheme.dark(
       brightness: Brightness.dark,
-      primary: second,
-      secondary: third,
+      primary: primary,
+      secondary: secondary,
       onSurface: Colors.white,
-      surface: first,
+      surface: primary,
     ),
   );
 }

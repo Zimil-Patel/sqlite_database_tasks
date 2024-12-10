@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sqlite_database_tasks/controller/home_controller.dart';
+import 'package:sqlite_database_tasks/screen/home%20screen/components/add_record_dialog.dart';
 import 'package:sqlite_database_tasks/utils.dart';
 
 import 'components/expense_list_view.dart';
+import 'components/filter_row.dart';
+import 'components/smart_card.dart';
+
+HomeController controller = Get.put(HomeController());
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    HomeController controller = Get.put(HomeController());
-
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
         title: const Text(
-          'Hey!\n\t\tStaR BoY',
+          'Hey!\n\t\t\tStaR BoY',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             shadows: [
@@ -28,16 +31,40 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: defPadding),
+            child: CircleAvatar(
+              child: Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
       ),
 
       // BODY
-      body: Obx(() => controller.expenseList.isNotEmpty
-          ? ExpenseListView(controller: controller)
-          : Center(
-              child: CircularProgressIndicator(
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            )),
+      body: Column(
+        children: [
+          // CARD - BALANCE, EXPENSE, INCOME
+          const SmartCard(),
+
+          // ALL - EXPENSE - INCOME
+          const FilterRow(),
+
+          // TRANSACTIONS
+          Expanded(
+            child: Obx(() => controller.expenseList.isNotEmpty
+                ? ExpenseListView(controller: controller)
+                : const Center(
+                    child: Text(
+                      'No data found!',
+                    ),
+                  )),
+          ),
+        ],
+      ),
 
       // FLOATING ACTION BUTTON
       floatingActionButton: Padding(
@@ -46,14 +73,8 @@ class HomeScreen extends StatelessWidget {
           horizontal: defPadding / 2,
         ),
         child: FloatingActionButton(
-          onPressed: () {
-            final date = DateTime.now();
-            final stringDate = "${date.day} / ${date.month} / ${date.year}";
-            controller.insertRecord(
-                amt: 5000,
-                category: 'From Dad',
-                isIncome: true,
-                date: stringDate);
+          onPressed: () async {
+            await addRecordDialog(context);
           },
           child: const Icon(
             Icons.add,
@@ -63,4 +84,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
