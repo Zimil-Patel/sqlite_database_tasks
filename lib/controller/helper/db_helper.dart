@@ -20,7 +20,6 @@ class DbHelper {
 
   Future<Database> get myDb async => _myDb ?? await createDatabase();
 
-
   Future<void> deleteDatabaseFile() async {
     log('Deleting database...');
     var path = await getDatabasesPath();
@@ -28,7 +27,6 @@ class DbHelper {
     await deleteDatabase(dbPath); // Deletes the database file
     log('Database deleted: $dbPath');
   }
-
 
   //CREATE DATABASE
   Future<Database> createDatabase() async {
@@ -87,7 +85,6 @@ class DbHelper {
     }
   }
 
-
   // DELETE RECORD IN DATABASE
   Future<void> dbDeleteRecord(int id) async {
     Database db = await myDb;
@@ -96,7 +93,7 @@ class DbHelper {
 
     try {
       int result = await db.rawDelete(query);
-      log("Status of operation : delete from table : $result");
+      log("Delete status: $result");
     } catch (e) {
       log("Failed to delete from table: $e");
     }
@@ -110,11 +107,53 @@ class DbHelper {
 
     try {
       final result = await db.rawQuery(query);
-      log("Status of operation : fetch from table : $result");
+      log("Fetch status: $result");
       return result;
-
     } catch (e) {
       log("Failed to fetch from table: $e");
+    }
+
+    return [];
+  }
+
+  // UPDATE RECORD
+  Future<void> dbUpdateRecord({
+    required int id,
+    required double amt,
+    required String category,
+    required int isIncome,
+    required String date,
+  }) async {
+    Database db = await myDb;
+
+    final String query = '''UPDATE $_tableName SET $_amount = ?, 
+    $_category = ?, 
+    $_isIncome = ?, 
+    $_date = ? 
+    WHERE $_id = ?''';
+
+    List args = [amt, category, isIncome, date, id];
+
+    try{
+      final result = await db.rawUpdate(query, args);
+      log("Update status : $result");
+    } catch(e) {
+      log("Failed to update in table!!! : $e");
+    }
+  }
+
+  // FILTER BY CATEGORY
+  Future<List<Map<String, Object?>>> dbFetchByFilter(int isIncome) async {
+    Database db = await myDb;
+
+    String query = '''SELECT * FROM $_tableName WHERE $_isIncome = $isIncome''';
+
+    try{
+      final result = await db.rawQuery(query);
+      log("Fetch status for $isIncome: $result");
+      return result;
+    } catch (e) {
+      log("Failed to fetch from table for $isIncome: $e");
     }
 
     return [];

@@ -39,4 +39,25 @@ class HomeController extends GetxController {
     final List listOfRecords = await DbHelper.dbHelper.dbFetchRecord();
     expenseList.value = listOfRecords.map((e) => ExpenseModel.fromDb(e)).toList();
   }
+
+  // UPDATE RECORD
+  Future<void> updateRecord({
+    required int id,
+    required double amt,
+    required String category,
+    required bool isIncome,
+    required String date,
+  }) async {
+    final isIncomeToInt = isIncome ? 1 : 0;
+    await DbHelper.dbHelper.dbUpdateRecord(
+      id: id,
+        amt: amt, category: category, isIncome: isIncomeToInt, date: date);
+    await fetchRecords();
+  }
+
+  // FILTER RECORDS
+  Future<void> fetchFilterRecordByIsIncome(bool isIncome) async {
+    final isIncomeToInt = isIncome ? 1 : 0;
+    final List listOfFilterRecords = await DbHelper.dbHelper.dbFetchByFilter(isIncomeToInt);
+  }
 }
