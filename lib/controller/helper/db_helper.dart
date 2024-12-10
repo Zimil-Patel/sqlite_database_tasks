@@ -20,9 +20,11 @@ class DbHelper {
 
   Future<Database> get myDb async => _myDb ?? await createDatabase();
 
+
   Future<void> deleteDatabaseFile() async {
+    log('Deleting database...');
     var path = await getDatabasesPath();
-    var dbPath = join(path, _dbName);
+    var dbPath = join(path, "$_dbName.db");
     await deleteDatabase(dbPath); // Deletes the database file
     log('Database deleted: $dbPath');
   }
@@ -32,7 +34,7 @@ class DbHelper {
   Future<Database> createDatabase() async {
     // GET DATABASE PATH
     var path = await getDatabasesPath();
-    final dbPath = join(path, _dbName);
+    final dbPath = join(path, '$_dbName.db');
     log("Got path: $dbPath");
 
     // OPEN DATABASE
@@ -62,7 +64,7 @@ class DbHelper {
   }
 
   // INSERT RECORD IN DATABASE
-  Future<void> dbInsert({
+  Future<void> dbInsertRecord({
     required double amt,
     required String category,
     required int isIncome,
@@ -83,5 +85,38 @@ class DbHelper {
     } catch (e) {
       log("Failed to insert into table!!! : $e");
     }
+  }
+
+
+  // DELETE RECORD IN DATABASE
+  Future<void> dbDeleteRecord(int id) async {
+    Database db = await myDb;
+
+    String query = '''DELETE FROM $_tableName WHERE $_id = $id''';
+
+    try {
+      int result = await db.rawDelete(query);
+      log("Status of operation : delete from table : $result");
+    } catch (e) {
+      log("Failed to delete from table: $e");
+    }
+  }
+
+  // FETCH RECORD IN DATABASE
+  Future<List<Map<String, Object?>>> dbFetchRecord() async {
+    Database db = await myDb;
+
+    String query = '''SELECT * FROM $_tableName''';
+
+    try {
+      final result = await db.rawQuery(query);
+      log("Status of operation : fetch from table : $result");
+      return result;
+
+    } catch (e) {
+      log("Failed to fetch from table: $e");
+    }
+
+    return [];
   }
 }

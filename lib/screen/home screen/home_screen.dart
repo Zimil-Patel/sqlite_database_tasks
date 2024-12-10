@@ -1,51 +1,66 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sqlite_database_tasks/controller/home_controller.dart';
+import 'package:sqlite_database_tasks/utils.dart';
+
+import 'components/expense_list_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     HomeController controller = Get.put(HomeController());
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('DB CRUD'),
+        toolbarHeight: 100,
+        title: const Text(
+          'Hey!\n\t\tStaR BoY',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            shadows: [
+              Shadow(
+                color: Colors.black54,
+                blurRadius: 10,
+                offset: Offset(2, 2),
+              ),
+            ],
+          ),
+        ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CupertinoButton(
 
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.black,
-                    boxShadow: const [
-                      BoxShadow(
-                        blurRadius: 10,
-                        spreadRadius: 2,
-                        offset: Offset(2, 2),
-                        color: Colors.black38,
-                      ),
-                    ],
-                  ),
-                  child: const Text('Press here to add db record...', style: TextStyle(color: Colors.white),)),
-              onPressed: () {
-                final currentDate = DateTime.now();
-                final date = '${currentDate.day}/${currentDate.month}/${currentDate.year}';
-                controller.insertIntoDatabase(amt: 699.83, category: 'Zoya-Fuel', isIncome: 0, date: date);
-              },
-            ),
-          ],
+      // BODY
+      body: Obx(() => controller.expenseList.isNotEmpty
+          ? ExpenseListView(controller: controller)
+          : Center(
+              child: CircularProgressIndicator(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            )),
+
+      // FLOATING ACTION BUTTON
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: defPadding * 1.5,
+          horizontal: defPadding / 2,
+        ),
+        child: FloatingActionButton(
+          onPressed: () {
+            final date = DateTime.now();
+            final stringDate = "${date.day} / ${date.month} / ${date.year}";
+            controller.insertRecord(
+                amt: 5000,
+                category: 'From Dad',
+                isIncome: true,
+                date: stringDate);
+          },
+          child: const Icon(
+            Icons.add,
+          ),
         ),
       ),
     );
   }
 }
+

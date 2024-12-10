@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sqlite_database_tasks/controller/helper/db_helper.dart';
 import 'package:sqlite_database_tasks/screen/home%20screen/home_screen.dart';
+import 'package:sqlite_database_tasks/theme/theme_data.dart';
+import 'package:sqlite_database_tasks/utils.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await DbHelper.dbHelper.deleteDatabaseFile();
-  await DbHelper.dbHelper.createDatabase();
   runApp(const DBApp());
 }
 
@@ -15,9 +14,14 @@ class DBApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
+
+    height = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
+
+    return GetMaterialApp(
+      theme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: const HomeScreen(),
 
     );
   }
