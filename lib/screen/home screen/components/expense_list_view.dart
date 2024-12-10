@@ -14,7 +14,9 @@ class ExpenseListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: EdgeInsets.symmetric(horizontal: defPadding),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.symmetric(horizontal: defPadding),
       itemBuilder: (context, index) => Card(
         color: controller.expenseList[index].isIncome
             ? Colors.green.shade200

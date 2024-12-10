@@ -45,25 +45,32 @@ class HomeScreen extends StatelessWidget {
       ),
 
       // BODY
-      body: Column(
-        children: [
-          // CARD - BALANCE, EXPENSE, INCOME
-          const SmartCard(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // CARD - BALANCE, EXPENSE, INCOME
+            const SmartCard(),
 
-          // ALL - EXPENSE - INCOME
-          const FilterRow(),
+            // ALL - EXPENSE - INCOME
+            const FilterRow(),
 
-          // TRANSACTIONS
-          Expanded(
-            child: Obx(() => controller.expenseList.isNotEmpty
-                ? ExpenseListView(controller: controller)
-                : const Center(
-                    child: Text(
-                      'No data found!',
+            // TRANSACTIONS
+            Obx(
+              () => controller.expenseList.isNotEmpty
+                  ? ExpenseListView(controller: controller)
+                  : const Center(
+                      child: Text(
+                        'No data found!',
+                      ),
                     ),
-                  )),
-          ),
-        ],
+            ),
+
+
+            SizedBox(
+              height: defPadding * 10,
+            ),
+          ],
+        ),
       ),
 
       // FLOATING ACTION BUTTON
