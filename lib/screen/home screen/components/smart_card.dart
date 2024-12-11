@@ -49,8 +49,8 @@ class SmartCard extends StatelessWidget {
                 right: defPadding * 2,
                 bottom: defPadding * 2),
             child: BlurryContainer(
-              color: Colors.white.withOpacity(0.2),
-              blur: 8,
+              color: Colors.white.withOpacity(0.18),
+              blur: 4,
               height: height * 0.24,
               borderRadius: BorderRadius.circular(30),
               padding: EdgeInsets.zero,
@@ -69,7 +69,7 @@ class SmartCard extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: height * 0.018,
                                 letterSpacing: 2,
-                                fontWeight: FontWeight.w100,
+                                fontWeight: FontWeight.w400,
                               ),
                             ),
 

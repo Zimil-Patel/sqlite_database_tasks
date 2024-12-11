@@ -21,7 +21,7 @@ class LabelAndTotal extends StatelessWidget {
           style: TextStyle(
             fontSize: height * 0.014,
             letterSpacing: 2,
-            fontWeight: FontWeight.w100,
+            fontWeight: FontWeight.w400,
           ),
         ),
 
