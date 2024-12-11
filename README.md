@@ -91,4 +91,6 @@ int expense = RecordController.calculateExpense();
 ### Video Preview 🎥
 
 
+https://github.com/user-attachments/assets/8327a40a-15b8-4c29-a522-ec3a1a1b0d45
+
 
