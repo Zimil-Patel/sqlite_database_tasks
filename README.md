@@ -85,7 +85,12 @@ int expense = RecordController.calculateExpense();
 
 <div align="left">
    
-<img src= "" height = 590 width = 300> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap1-portrait.png" height = 590 width = 300> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap2-portrait.png" height = 590 width = 300> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap3-portrait.png" height = 590 width = 300> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap4-portrait.png" height = 590 width = 300> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap5-portrait.png" height = 590 width = 300> &nbsp;&nbsp;&nbsp;&nbsp;
+
 </div>
 
 ### Video Preview 🎥
