@@ -16,7 +16,7 @@ class SearchButton extends StatelessWidget {
     return CupertinoButton(
       padding: EdgeInsets.zero,
       onPressed: () {
-        Get.to(const SearchScreen());
+        Get.to(() => const SearchScreen());
       },
       child: Hero(
         tag: 'searchBar',
