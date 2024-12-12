@@ -6,6 +6,7 @@ import 'package:sqlite_database_tasks/utils.dart';
 
 import 'components/expense_list_view.dart';
 import 'components/filter_row.dart';
+import 'components/search_button.dart';
 import 'components/smart_card.dart';
 
 HomeController controller = Get.put(HomeController());
@@ -17,6 +18,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         toolbarHeight: 100,
         title: const Text(
           'Hey!\n\t\t\tStaR BoY',
@@ -32,15 +34,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         actions: const [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: defPadding),
-            child: CircleAvatar(
-              child: Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
-            ),
-          ),
+          SearchButton(),
         ],
       ),
 
@@ -66,7 +60,7 @@ class HomeScreen extends StatelessWidget {
             ),
 
 
-            SizedBox(
+            const SizedBox(
               height: defPadding * 10,
             ),
           ],
@@ -91,3 +85,4 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+

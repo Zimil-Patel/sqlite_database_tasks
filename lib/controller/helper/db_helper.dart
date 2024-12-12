@@ -158,4 +158,21 @@ class DbHelper {
 
     return [];
   }
+
+  // FILTER BY SEARCH
+  Future<List<Map<String, Object?>>> dbFetchBySearch(String searchValue) async {
+    Database db = await myDb;
+
+    String query = "SELECT * FROM $_tableName WHERE $_category LIKE '$searchValue%'";
+
+    try{
+      final result = await db.rawQuery(query);
+      log("Fetch status for $searchValue : $result");
+      return result;
+    } catch(e){
+      log("Failed to fetch from table for $searchValue : $e");
+    }
+
+    return [];
+  }
 }

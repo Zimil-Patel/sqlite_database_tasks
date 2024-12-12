@@ -13,6 +13,7 @@ class HomeController extends GetxController {
   RxBool isIncome = false.obs;
   TextEditingController txtAmount = TextEditingController();
   TextEditingController txtCategory = TextEditingController();
+  TextEditingController txtSearch = TextEditingController();
 
   @override
   Future<void> onInit() async {
@@ -97,6 +98,13 @@ class HomeController extends GetxController {
     expenseList.value = listOfFilterRecords.map((e) => ExpenseModel.fromDb(e)).toList();
     await calculateBalance();
   }
+
+  // FILTER RECORD BY SEARCH
+  Future<void> fetchFilterRecordByCategorySearch(String searchValue) async {
+    final List listOfFilterRecords = await DbHelper.dbHelper.dbFetchBySearch(searchValue);
+    expenseList.value = listOfFilterRecords.map((e) => ExpenseModel.fromDb(e)).toList();
+  }
+
 
   // CALCULATE BALANCE
   Future<void> calculateBalance() async {
