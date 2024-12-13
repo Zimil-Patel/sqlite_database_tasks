@@ -3,9 +3,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:sqlite_database_tasks/screen/home%20screen/home_screen.dart';
 import 'package:sqlite_database_tasks/theme/theme_data.dart';
 import 'package:sqlite_database_tasks/utils.dart';
+
+import '../../../main.dart';
 
 addRecordDialog(BuildContext context) {
   showDialog(

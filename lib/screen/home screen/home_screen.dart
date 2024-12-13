@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sqlite_database_tasks/controller/home_controller.dart';
 import 'package:sqlite_database_tasks/screen/home%20screen/components/add_record_dialog.dart';
 import 'package:sqlite_database_tasks/utils.dart';
 
+import '../../main.dart';
 import 'components/expense_list_view.dart';
 import 'components/filter_row.dart';
 import 'components/search_button.dart';
 import 'components/smart_card.dart';
 
-HomeController controller = Get.put(HomeController());
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -17,31 +16,42 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        toolbarHeight: 100,
-        title: const Text(
-          'Hey!\n\t\t\tStaR BoY',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            shadows: [
-              Shadow(
-                color: Colors.black54,
-                blurRadius: 10,
-                offset: Offset(2, 2),
-              ),
-            ],
-          ),
-        ),
-        actions: const [
-          SearchButton(),
-        ],
-      ),
 
       // BODY
       body: SingleChildScrollView(
         child: Column(
           children: [
+
+            SizedBox(
+              height: MediaQuery.of(context).padding.top,
+            ),
+
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: defPadding),
+                  child: CircleAvatar(
+                    radius: height * 0.025,
+                  ),
+                ),
+                const Text(
+                  'StaR BoY',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black54,
+                        blurRadius: 10,
+                        offset: Offset(2, 2),
+                      ),
+                    ],
+                  ),
+                ),
+                const Spacer(),
+                const SearchButton(),
+              ],
+            ),
+
             // CARD - BALANCE, EXPENSE, INCOME
             const SmartCard(),
 

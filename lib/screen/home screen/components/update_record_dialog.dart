@@ -3,10 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sqlite_database_tasks/model/expense_model.dart';
-import 'package:sqlite_database_tasks/screen/home%20screen/home_screen.dart';
 import 'package:sqlite_database_tasks/theme/theme_data.dart';
 import 'package:sqlite_database_tasks/utils.dart';
 
+import '../../../main.dart';
 import 'add_record_dialog.dart';
 
 updateRecordDialog(BuildContext context, ExpenseModel model) {

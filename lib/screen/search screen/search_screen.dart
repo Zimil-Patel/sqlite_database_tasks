@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:sqlite_database_tasks/screen/home%20screen/home_screen.dart';
 
+import '../../main.dart';
 import '../../theme/theme_data.dart';
 import '../../utils.dart';
 import '../home screen/components/expense_list_view.dart';

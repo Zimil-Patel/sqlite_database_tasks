@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:sqlite_database_tasks/screen/home%20screen/home_screen.dart';
+import 'package:sqlite_database_tasks/controller/home_controller.dart';
+import 'package:sqlite_database_tasks/screen/register%20screen/register_screen.dart';
 import 'package:sqlite_database_tasks/theme/theme_data.dart';
 import 'package:sqlite_database_tasks/utils.dart';
 
+late HomeController controller;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  controller = HomeController();
+
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent, // Transparent status bar
+    // statusBarIconBrightness: Brightness.dark, // Icon brightness
+    // systemNavigationBarColor: Colors.transparent, // Transparent navigation bar
+    // systemNavigationBarIconBrightness: Brightness.dark,
+  ));
+
   runApp(const DBApp());
 }
 
@@ -21,7 +34,7 @@ class DBApp extends StatelessWidget {
     return GetMaterialApp(
       theme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: const RegisterScreen(),
 
     );
   }

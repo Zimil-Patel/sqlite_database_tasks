@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:sqlite_database_tasks/theme/theme_data.dart';
 import 'package:sqlite_database_tasks/utils.dart';
 
-import '../home_screen.dart';
+import '../../../main.dart';
 
 class FilterRow extends StatelessWidget {
   const FilterRow({

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sqlite_database_tasks/utils.dart';
 
-import '../home_screen.dart';
+import '../../../main.dart';
 import 'label_total.dart';
 
 

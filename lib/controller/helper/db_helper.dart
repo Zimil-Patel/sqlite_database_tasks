@@ -15,10 +15,21 @@ class DbHelper {
   final String _isIncome = 'isIncome';
   final String _date = 'date';
 
-  static DbHelper dbHelper = DbHelper._instance();
+  static final DbHelper dbHelper = DbHelper._instance();
   Database? _myDb;
 
-  Future<Database> get myDb async => _myDb ?? await createDatabase();
+  // Future<Database> get myDb async => _myDb ?? await createDatabase();
+
+  Future<Database> get myDb async {
+    if (_myDb != null) {
+      log('Using existing database instance');
+      return _myDb!;
+    }
+    log('Creating new database instance');
+    _myDb = await createDatabase();
+    return _myDb!;
+  }
+
 
   Future<void> deleteDatabaseFile() async {
     log('Deleting database...');
@@ -36,7 +47,7 @@ class DbHelper {
     log("Got path: $dbPath");
 
     // OPEN DATABASE
-    Database db = await openDatabase(
+    final db = await openDatabase(
       dbPath,
       version: 1,
       onCreate: (db, version) async {
@@ -107,7 +118,7 @@ class DbHelper {
 
     try {
       final result = await db.rawQuery(query);
-      log("Fetch status: $result");
+      // log("Fetch status: $result");
       return result;
     } catch (e) {
       log("Failed to fetch from table: $e");

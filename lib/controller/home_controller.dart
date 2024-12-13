@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:sqlite_database_tasks/controller/helper/db_helper.dart';
@@ -15,12 +17,23 @@ class HomeController extends GetxController {
   TextEditingController txtCategory = TextEditingController();
   TextEditingController txtSearch = TextEditingController();
 
-  @override
-  Future<void> onInit() async {
-    // await DbHelper.dbHelper.deleteDatabaseFile();
+  // @override
+  // Future<void> onInit() async {
+  //   // await DbHelper.dbHelper.deleteDatabaseFile();
+  //
+  //   super.onInit();
+  // }
+  //
+  Future<void> _init() async {
+    log("home init Start...");
     await DbHelper.dbHelper.myDb;
     await setExpenseList();
-    super.onInit();
+    log("home init Complete...");
+  }
+
+  HomeController(){
+    log("Called constructor...");
+    _init();
   }
 
   // SET IS INCOME SWITCH
