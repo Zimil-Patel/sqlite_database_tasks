@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sqlite_database_tasks/utils.dart';
-
-
 
 class LabelAndTotal extends StatelessWidget {
   const LabelAndTotal({
-    super.key, required this.label, required this.total,
+    super.key,
+    required this.label,
+    required this.total,
   });
 
   final String label;
@@ -18,16 +19,15 @@ class LabelAndTotal extends StatelessWidget {
       children: [
         Text(
           label,
-          style: TextStyle(
-            fontSize: height * 0.014,
+          style: GoogleFonts.varelaRound(
+            fontSize: height * 0.015,
             letterSpacing: 2,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w500,
           ),
         ),
-
         Text(
           '\$ $total',
-          style: TextStyle(
+          style: GoogleFonts.varelaRound(
             fontSize: height * 0.02,
             letterSpacing: 1,
             height: 2,

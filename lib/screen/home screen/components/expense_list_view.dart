@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sqlite_database_tasks/controller/home_controller.dart';
 import 'package:sqlite_database_tasks/screen/home%20screen/components/update_record_dialog.dart';
 import 'package:sqlite_database_tasks/utils.dart';
@@ -45,13 +46,17 @@ class ExpenseListView extends StatelessWidget {
           ),
           title: Text(
             "\$ ${controller.expenseList[index].amount.toString()}",
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: GoogleFonts.varelaRound(
+              textStyle: const TextStyle(fontWeight: FontWeight.bold),
+            ),
           ),
           subtitle: Text(
             "${controller.expenseList[index].category} - ${controller.expenseList[index].date}",
-            style: TextStyle(
-              fontSize: height * 0.015,
-              color: Colors.white,
+            style: GoogleFonts.varelaRound(
+              textStyle: TextStyle(
+                fontSize: height * 0.015,
+                color: Colors.white,
+              ),
             ),
           ),
         ),

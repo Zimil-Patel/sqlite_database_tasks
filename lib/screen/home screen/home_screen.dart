@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sqlite_database_tasks/screen/home%20screen/components/add_record_dialog.dart';
 import 'package:sqlite_database_tasks/utils.dart';
 
@@ -9,19 +10,16 @@ import 'components/filter_row.dart';
 import 'components/search_button.dart';
 import 'components/smart_card.dart';
 
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       // BODY
       body: SingleChildScrollView(
         child: Column(
           children: [
-
             SizedBox(
               height: MediaQuery.of(context).padding.top,
             ),
@@ -31,14 +29,16 @@ class HomeScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: defPadding),
                   child: CircleAvatar(
-                    radius: height * 0.025,
+                    radius: height * 0.027,
+                    backgroundImage: const AssetImage('assets/images/profile.png'),
                   ),
                 ),
-                const Text(
+                Text(
                   'StaR BoY',
-                  style: TextStyle(
+                  style: GoogleFonts.varelaRound(
+                    fontSize: height * 0.024,
                     fontWeight: FontWeight.bold,
-                    shadows: [
+                    shadows: const [
                       Shadow(
                         color: Colors.black54,
                         blurRadius: 10,
@@ -60,15 +60,15 @@ class HomeScreen extends StatelessWidget {
 
             // TRANSACTIONS
             Obx(
-              () => controller.expenseList.isNotEmpty
+                  () => controller.expenseList.isNotEmpty
                   ? ExpenseListView(controller: controller)
-                  : const Center(
-                      child: Text(
-                        'No data found!',
-                      ),
-                    ),
+                  : Center(
+                child: Text(
+                  'No data found!',
+                  style: GoogleFonts.varelaRound(),
+                ),
+              ),
             ),
-
 
             const SizedBox(
               height: defPadding * 10,
@@ -95,4 +95,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
