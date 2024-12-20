@@ -6,7 +6,7 @@ import 'package:sqlite_database_tasks/screen/setting%20screen/settings_screen.da
 
 import '../screen/analysis screen/analysis_screen.dart';
 
-class TabController extends GetxController {
+class TabsController extends GetxController {
 
   RxInt tabIndex = 0.obs;
   Widget tabScreen = const HomeScreen();
@@ -27,6 +27,7 @@ class TabController extends GetxController {
         tabScreen = const AnalysisScreen();
         break;
     }
+    update();
   }
 
 }

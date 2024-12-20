@@ -77,21 +77,6 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
 
-      // FLOATING ACTION BUTTON
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: defPadding * 1.5,
-          horizontal: defPadding / 2,
-        ),
-        child: FloatingActionButton(
-          onPressed: () async {
-            await addRecordDialog(context);
-          },
-          child: const Icon(
-            Icons.add,
-          ),
-        ),
-      ),
     );
   }
 }

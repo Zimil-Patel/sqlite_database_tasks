@@ -1,16 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sqlite_database_tasks/screen/add%20screen/add_screen.dart';
 import 'package:sqlite_database_tasks/theme/theme_data.dart';
 import 'package:sqlite_database_tasks/utils.dart';
+
+import '../../controller/tab_controller.dart';
+
+final tabController = Get.put(TabsController());
 
 class TabScreen extends StatelessWidget {
   const TabScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Stack(
+        alignment: Alignment.center,
         children: [
+
+           GetBuilder<TabsController>(builder: (tabCtrl) => tabCtrl.tabScreen,),
+
           Align(
             alignment: Alignment.bottomCenter,
             child: SizedBox(
@@ -36,9 +47,9 @@ class TabScreen extends StatelessWidget {
                         Spacer(
                           flex: 5,
                         ),
-                        TabIcon(icon: Icons.bar_chart, index: 2,),
+                        TabIcon(icon: Icons.settings, index: 2,),
                         Spacer(flex: 1,),
-                        TabIcon(icon: Icons.settings, index: 3,),
+                        TabIcon(icon: Icons.bar_chart, index: 3,),
                       ],
                     ),
                   ),
@@ -46,14 +57,19 @@ class TabScreen extends StatelessWidget {
                     alignment: Alignment.topCenter,
                     child: CupertinoButton(
                       padding: EdgeInsets.zero,
-                      onPressed: () {},
-                      child: CircleAvatar(
-                        radius: height * 0.034,
-                        backgroundColor: Theme.of(context).colorScheme.primary,
-                        child: Icon(
-                          Icons.add,
-                          size: height * 0.03,
-                          color: Colors.white,
+                      onPressed: () {
+                        Get.to(() => const AddScreen());
+                      },
+                      child: Hero(
+                        tag: 'addScreen',
+                        child: CircleAvatar(
+                          radius: height * 0.032,
+                          backgroundColor: Theme.of(context).colorScheme.primary,
+                          child: Icon(
+                            Icons.add,
+                            size: height * 0.03,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
@@ -80,25 +96,32 @@ class TabIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoButton(
       padding: EdgeInsets.zero,
-      onPressed: (){},
+      onPressed: (){
+
+        tabController.setTabIndex(index);
+
+      },
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
 
           // TAB ICON
-           Icon(icon, color: third, size: height * 0.028,),
-          const Spacer(),
+           Obx(
+               () => Icon(icon, color: index == tabController.tabIndex.value ? third : Colors.white, size: height * 0.028,)),
+
+          Obx(() => index == tabController.tabIndex.value ? const Spacer() : const SizedBox()),
 
 
           // SELECTED INDEX INDICATOR
-          Container(
+          Obx(() =>
+          index == tabController.tabIndex.value ? Container(
             height: height * 0.005,
             width: width * 0.04,
             decoration: BoxDecoration(
-              color: index == 0 ? third : Colors.transparent,
+              color:  third,
               borderRadius: BorderRadius.circular(10)
             ),
-          ),
+          ) : const SizedBox(),),
         ],
       ),
     );
