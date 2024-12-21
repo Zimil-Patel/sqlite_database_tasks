@@ -32,37 +32,49 @@ class TransactionTypeRadio extends StatelessWidget {
             ],
           ),
 
-          Row(
-            children: [
-              // INCOME
-              Expanded(
-                child: Material(
-                  color: Colors.transparent,
-                  child: RadioListTile(
-                    value: 0,
-                    groupValue: 0,
-                    onChanged: (value) {},
-                    activeColor: third,
-                    title: const Text('Income'),
+          Material(
+            color: Colors.transparent,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // INCOME
+                Expanded(
+                  child: Row(
+                    children: [
+                      Radio<int>(
+                        value: 0,
+                        groupValue: 0,
+                        onChanged: (value){},
+                        activeColor: third,
+                      ),
+                      const SizedBox(width: defPadding / 2,),
+                      Flexible(child: Text('Income', style: TextStyle(fontSize: height * 0.019), overflow: TextOverflow.ellipsis,)),
+                    ],
                   ),
                 ),
-              ),
 
+                const SizedBox(width: defPadding / 2,),
 
-              // EXPENSE
-              Expanded(
-                child: Material(
-                  color: Colors.transparent,
-                  child: RadioListTile(
-                    value: 1,
-                    groupValue: 0,
-                    onChanged: (value) {},
-                    activeColor: third,
-                    title: const Text('Expense'),
+                Expanded(
+                  child: Row(
+                    children: [
+                      Radio<int>(
+                        value: 1,
+                        groupValue: 0,
+                        onChanged: (value){},
+                        activeColor: third,
+                      ),
+                      const SizedBox(width: defPadding / 2,),
+                      Flexible(child: Text('Expense', style: TextStyle(fontSize: height * 0.019),overflow: TextOverflow.ellipsis)),
+                    ],
                   ),
                 ),
-              ),
-            ],
+
+
+                // EXPENSE
+
+              ],
+            ),
           ),
         ],
       ),
