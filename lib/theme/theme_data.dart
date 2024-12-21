@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 const Color primary = Color(0xFF0A3981);
 const Color secondary = Color(0xFF1F509A);
@@ -18,6 +19,15 @@ class AppTheme {
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.transparent,
       shadowColor: Colors.black54
+    ),
+
+    textTheme: TextTheme(
+      titleLarge: GoogleFonts.varelaRound(),
+      titleMedium: GoogleFonts.varelaRound(),
+      titleSmall: GoogleFonts.varelaRound(),
+      bodyLarge: GoogleFonts.varelaRound(),
+      bodyMedium: GoogleFonts.varelaRound(),
+      bodySmall: GoogleFonts.varelaRound(),
     ),
 
     // FLOATING ACTION BUTTON

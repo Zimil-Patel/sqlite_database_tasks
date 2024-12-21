@@ -6,8 +6,8 @@ import 'package:sqlite_database_tasks/theme/theme_data.dart';
 import 'package:sqlite_database_tasks/utils.dart';
 
 import '../../controller/tab_controller.dart';
+import '../../main.dart';
 
-final tabController = Get.put(TabsController());
 
 class TabScreen extends StatelessWidget {
   const TabScreen({super.key});

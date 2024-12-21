@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 import '../../main.dart';
-import '../../theme/theme_data.dart';
 import '../../utils.dart';
 import '../home screen/components/expense_list_view.dart';
+import 'components/search_field.dart';
+import 'components/search_icon.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -50,48 +51,13 @@ class SearchScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: defPadding * 1.5),
-                              child: Material(
-                                color: Colors.transparent,
-                                child: TextField(
-                                  controller: controller.txtSearch,
-                                  cursorColor:
-                                      Theme.of(context).colorScheme.onSurface,
-                                  onChanged: (value){
-                                    controller.fetchFilterRecordByCategorySearch(value);
-                                  },
-                                  decoration: InputDecoration(
-                                    hintText: 'Search category...',
-                                    hintStyle: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onSurface
-                                          .withOpacity(0.5),
-                                    ),
-                                    border: InputBorder.none,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(defPadding / 1.2),
-                            decoration: const BoxDecoration(
-                                color: background, shape: BoxShape.circle),
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Icon(
-                                Icons.search,
-                                size: height * 0.025,
-                                color: Theme.of(context).colorScheme.onSurface,
-                              ),
-                            ),
-                          ),
+
+                          // SEARCH FIELD
+                          searchField(context),
+
+
+                          // SEARCH ICON
+                          searchIcon(context),
                         ],
                       ),
                     ),
@@ -120,4 +86,8 @@ class SearchScreen extends StatelessWidget {
       ),
     );
   }
+
+
+
+
 }

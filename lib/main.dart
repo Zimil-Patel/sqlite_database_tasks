@@ -8,12 +8,16 @@ import 'package:sqlite_database_tasks/screen/tab%20screen/tab_screen.dart';
 import 'package:sqlite_database_tasks/theme/theme_data.dart';
 import 'package:sqlite_database_tasks/utils.dart';
 
+import 'controller/tab_controller.dart';
+
 late HomeController controller;
+late TabsController tabController;
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  controller = HomeController();
-
+  controller = Get.put(HomeController());
+  tabController = Get.put(TabsController());
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent, // Transparent status bar
     // statusBarIconBrightness: Brightness.dark, // Icon brightness
