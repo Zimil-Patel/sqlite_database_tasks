@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sqlite_database_tasks/controller/home_controller.dart';
-import 'package:sqlite_database_tasks/screen/home%20screen/components/update_record_dialog.dart';
 import 'package:sqlite_database_tasks/utils.dart';
 
 class ExpenseListView extends StatelessWidget {
@@ -32,7 +31,7 @@ class ExpenseListView extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: () {
-                  updateRecordDialog(context, controller.expenseList[index]);
+                  // updateRecordDialog(context, controller.expenseList[index]);
                 },
                 icon: const Icon(Icons.edit),
               ),

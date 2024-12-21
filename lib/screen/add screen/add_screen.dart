@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sqlite_database_tasks/screen/register%20screen/components/custom_text_field.dart';
 import 'package:sqlite_database_tasks/utils.dart';
+
+import 'components/add_record_button.dart';
+import 'components/amount_des_text_field.dart';
+import 'components/categories_grid_view.dart';
+import 'components/transaction_type_radio.dart';
 
 class AddScreen extends StatelessWidget {
   const AddScreen({super.key});
@@ -14,34 +18,22 @@ class AddScreen extends StatelessWidget {
       body: Hero(
         tag: 'addScreen',
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(defPadding),
           child: Column(
             children: [
               // AMOUNT
-              Material(
-                  color: Colors.transparent,
-                  child: buildTextField(
-                    icon: Icons.attach_money_rounded,
-                    hintText: 'Enter Amount',
-                    keyboardType: TextInputType.number,
-                  )),
-          
-              // DESCRIPTION
-              Material(
-                  color: Colors.transparent,
-                  child: buildTextField(
-                    icon: Icons.description_rounded,
-                    hintText: 'Enter Description',
-                  )),
-          
+              buildAmountDesTextField(),
+
+              // IS INCOME OR EXPENSE
+              const TransactionTypeRadio(),
+
               // CATEGORY
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: defPadding),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // HEADING
-                    Row(
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // HEADING
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: defPadding),
+                    child: Row(
                       children: [
                         const Icon(Icons.category_rounded),
                         const SizedBox(
@@ -55,11 +47,21 @@ class AddScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-          
-                    // CATEGORY LIST ICONS
-                  ],
-                ),
+                  ),
+
+                  const SizedBox(
+                    height: defPadding,
+                  ),
+
+                  // LIST OF CATEGORIES
+                  const CategoriesGridView(),
+
+                  // CATEGORY LIST ICONS
+                ],
               ),
+
+              // SAVE RECORD BUTTON
+              addRecordButton(),
             ],
           ),
         ),

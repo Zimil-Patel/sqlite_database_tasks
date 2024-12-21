@@ -23,7 +23,7 @@ final List<Map<String, dynamic>> expenseCategories = [
   {'name': 'Gifts & Donations', 'icon': Icons.card_giftcard, 'color': Colors.pink[200]},
   {'name': 'Childcare', 'icon': Icons.child_friendly, 'color': Colors.lightBlue[100]},
   {'name': 'Subscriptions', 'icon': Icons.subscriptions, 'color': Colors.deepPurple[100]},
-  {'name': 'Miscellaneous', 'icon': Icons.category, 'color': Colors.grey[100]},
   {'name': 'Taxes', 'icon': Icons.receipt_long, 'color': Colors.blueGrey[100]},
+  {'name': 'Other', 'icon': Icons.category, 'color': Colors.grey[100]},
 ];
 

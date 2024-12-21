@@ -14,7 +14,7 @@ class HomeController extends GetxController {
   RxString filter = "All".obs;
   RxBool isIncome = false.obs;
   TextEditingController txtAmount = TextEditingController();
-  TextEditingController txtCategory = TextEditingController();
+  TextEditingController txxDescription = TextEditingController();
   TextEditingController txtSearch = TextEditingController();
 
   // @override
@@ -134,7 +134,7 @@ class HomeController extends GetxController {
 
   void resetControllers() {
     txtAmount.clear();
-    txtCategory.clear();
+    txxDescription.clear();
     isIncome.value = false;
   }
 }

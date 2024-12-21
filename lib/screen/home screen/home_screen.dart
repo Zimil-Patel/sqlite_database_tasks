@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sqlite_database_tasks/screen/home%20screen/components/add_record_dialog.dart';
 import 'package:sqlite_database_tasks/utils.dart';
 
 import '../../main.dart';
