@@ -15,7 +15,7 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Search Transaction',
+          'Transactions',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             shadows: [

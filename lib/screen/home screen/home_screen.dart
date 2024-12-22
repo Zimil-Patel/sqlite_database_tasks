@@ -29,7 +29,8 @@ class HomeScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: defPadding),
                   child: CircleAvatar(
                     radius: height * 0.027,
-                    backgroundImage: const AssetImage('assets/images/profile.png'),
+                    backgroundImage:
+                        const AssetImage('assets/images/profile.png'),
                   ),
                 ),
                 Text(
@@ -59,14 +60,16 @@ class HomeScreen extends StatelessWidget {
 
             // TRANSACTIONS
             Obx(
-                  () => controller.expenseList.isNotEmpty
+              () => controller.expenseList.isNotEmpty
                   ? ExpenseListView(controller: controller)
                   : Center(
-                child: Text(
-                  'No data found!',
-                  style: GoogleFonts.varelaRound(),
-                ),
-              ),
+                      child: Text(
+                        'No transaction found!',
+                        style: GoogleFonts.varelaRound(
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
             ),
 
             const SizedBox(
@@ -75,7 +78,6 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-
     );
   }
 }

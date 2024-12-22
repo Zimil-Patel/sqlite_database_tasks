@@ -7,6 +7,7 @@ class DbHelper {
   // SINGLETON OBJECT
   DbHelper._instance();
 
+  // EXPENSE TABLE
   final String _dbName = 'expense';
   final String _tableName = 'history';
   final String _id = 'id';
@@ -14,6 +15,18 @@ class DbHelper {
   final String _amount = 'amount';
   final String _isIncome = 'isIncome';
   final String _date = 'date';
+  final String _description = 'description';
+
+
+  // USER TABLE
+  final String _tableUsers = 'users';
+  final String _firstName = 'firstName';
+  final String _lastName = 'lastName';
+  final String _email = 'email';
+  final String _password = 'password';
+  final String _phoneNumber = 'phoneNumber';
+  final String _profilePicture = 'profilePicture';
+
 
   static final DbHelper dbHelper = DbHelper._instance();
   Database? _myDb;
@@ -52,17 +65,35 @@ class DbHelper {
       version: 1,
       onCreate: (db, version) async {
         log("Data base is now open....");
-        final query = '''CREATE TABLE $_tableName(
+        final query1 = '''CREATE TABLE $_tableName(
             $_id INTEGER PRIMARY KEY AUTOINCREMENT,
             $_amount REAL NOT NULL,
             $_category TEXT,
+            $_description TEXT,
             $_isIncome INTEGER,
             $_date TEXT
           )''';
 
         try {
-          await db.execute(query);
+          await db.execute(query1);
           log("Tabled created... : $_tableName");
+        } catch (e) {
+          log("Failed to create table!!! : $e");
+        }
+
+        final query2 = '''CREATE TABLE $_tableUsers(
+          $_id INTEGER AUTOINCREMENT PRIMARY KEY,
+          $_firstName TEXT,
+          $_lastName TEXT,
+          $_email TEXT,
+          $_password TEXT,
+          $_phoneNumber NUMERIC,
+          $_profilePicture BLOB
+        )''';
+
+        try {
+          await db.execute(query2);
+          log("Tabled created... : $_tableUsers");
         } catch (e) {
           log("Failed to create table!!! : $e");
         }

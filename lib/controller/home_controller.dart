@@ -26,8 +26,9 @@ class HomeController extends GetxController {
   //
   Future<void> _init() async {
     log("home init Start...");
-    await DbHelper.dbHelper.myDb;
-    await setExpenseList();
+    // await DbHelper.dbHelper.deleteDatabaseFile();
+    // await DbHelper.dbHelper.myDb;
+    // await setExpenseList();
     log("home init Complete...");
   }
 

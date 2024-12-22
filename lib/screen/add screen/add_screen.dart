@@ -13,7 +13,19 @@ class AddScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Record'),
+        title: const Text(
+          'Add Record',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            shadows: [
+              Shadow(
+                color: Colors.black54,
+                blurRadius: 10,
+                offset: Offset(2, 2),
+              ),
+            ],
+          ),
+        ),
       ),
       body: Hero(
         tag: 'addScreen',

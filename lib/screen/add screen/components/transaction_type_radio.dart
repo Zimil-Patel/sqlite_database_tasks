@@ -39,13 +39,16 @@ class TransactionTypeRadio extends StatelessWidget {
               children: [
                 // INCOME
                 Expanded(
+                  flex: 1,
                   child: Row(
                     children: [
-                      Radio<int>(
-                        value: 0,
-                        groupValue: 0,
-                        onChanged: (value){},
-                        activeColor: third,
+                      Flexible(
+                        child: Radio<int>(
+                          value: 0,
+                          groupValue: 0,
+                          onChanged: (value){},
+                          activeColor: third,
+                        ),
                       ),
                       const SizedBox(width: defPadding / 2,),
                       Flexible(child: Text('Income', style: TextStyle(fontSize: height * 0.019), overflow: TextOverflow.ellipsis,)),
@@ -55,14 +58,17 @@ class TransactionTypeRadio extends StatelessWidget {
 
                 const SizedBox(width: defPadding / 2,),
 
+
                 Expanded(
                   child: Row(
                     children: [
-                      Radio<int>(
-                        value: 1,
-                        groupValue: 0,
-                        onChanged: (value){},
-                        activeColor: third,
+                      Flexible(
+                        child: Radio<int>(
+                          value: 1,
+                          groupValue: 0,
+                          onChanged: (value){},
+                          activeColor: third,
+                        ),
                       ),
                       const SizedBox(width: defPadding / 2,),
                       Flexible(child: Text('Expense', style: TextStyle(fontSize: height * 0.019),overflow: TextOverflow.ellipsis)),
