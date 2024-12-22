@@ -25,6 +25,8 @@ class DbHelper {
   final String _email = 'email';
   final String _password = 'password';
   final String _phoneNumber = 'phoneNumber';
+  final String _gender = 'gender';
+  final String _age = 'age';
   final String _profilePicture = 'profilePicture';
 
 
@@ -87,7 +89,9 @@ class DbHelper {
           $_lastName TEXT,
           $_email TEXT,
           $_password TEXT,
-          $_phoneNumber NUMERIC,
+          $_phoneNumber TEXT,
+          $_gender TEXT,
+          $_age INTEGER,
           $_profilePicture BLOB
         )''';
 

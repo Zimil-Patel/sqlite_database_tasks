@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sqlite_database_tasks/controller/home_controller.dart';
+import 'package:sqlite_database_tasks/screen/home%20screen/home_screen.dart';
 import 'package:sqlite_database_tasks/screen/register%20screen/register_screen.dart';
 import 'package:sqlite_database_tasks/theme/theme_data.dart';
 import 'package:sqlite_database_tasks/utils.dart';
@@ -38,7 +39,7 @@ class DBApp extends StatelessWidget {
     return GetMaterialApp(
       theme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
-      home: const RegisterScreen(),
+      home: const HomeScreen(),
 
     );
   }
