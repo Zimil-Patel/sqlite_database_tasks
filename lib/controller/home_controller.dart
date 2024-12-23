@@ -69,6 +69,7 @@ class HomeController extends GetxController {
     }
   }
 
+
   // INSERT INTO DATABASE
   Future<void> insertRecord(ExpenseModel model) async {
     await DbHelper.dbHelper.dbInsertRecord(model);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get.dart';
 
 import '../../main.dart';
 import '../../utils.dart';
@@ -14,6 +14,11 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(onPressed: (){
+          controller.setExpenseList();
+          controller.txtSearch.clear();
+          Get.back();
+        }, icon: const Icon(Icons.arrow_back_ios_new_rounded),),
         title: const Text(
           'Transactions',
           style: TextStyle(

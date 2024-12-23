@@ -40,12 +40,17 @@ class UserController extends GetxController {
     isEditing.value = value;
   }
 
+  // SET GENDER VALUE
+  void setGenderValue(int value){
+    genderValue.value = value;
+  }
+
   void setUserValue(UserModel model){
     txtFirstName.text = model.firstName;
     txtLastName.text = model.lastName;
     txtEmail.text = model.email;
     txtPhone.text = model.phoneNumber;
-    txtAge.text = model.age ?? 'Set age';
+    txtAge.text = model.age == null ? 'Set age' : model.age.toString();
     if(model.gender != null){
       if (model.gender?.toLowerCase() == 'male') {
         genderValue.value = 0;
@@ -55,7 +60,7 @@ class UserController extends GetxController {
     } else {
       genderValue.value = 3;
     }
-    image = model.profilePicture!;
+    image = model.profilePicture ?? null;
     update();
   }
 

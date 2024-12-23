@@ -26,9 +26,9 @@ class AddScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Add Record',
-          style: TextStyle(
+        title: Text(
+          isForEditing ? 'Update Record' : 'Add Record' ,
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             shadows: [
               Shadow(

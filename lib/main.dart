@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sqlite_database_tasks/controller/home_controller.dart';
 import 'package:sqlite_database_tasks/controller/user_controller.dart';
-import 'package:sqlite_database_tasks/screen/home%20screen/home_screen.dart';
 import 'package:sqlite_database_tasks/screen/register%20screen/register_screen.dart';
 import 'package:sqlite_database_tasks/screen/tab%20screen/tab_screen.dart';
 import 'package:sqlite_database_tasks/theme/theme_data.dart';
@@ -18,8 +17,8 @@ late UserController userController;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  controller = await Get.put(HomeController());
-  userController = await Get.put(UserController());
+  controller = Get.put(HomeController());
+  userController = Get.put(UserController());
   tabController = Get.put(TabsController());
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent, // Transparent status bar

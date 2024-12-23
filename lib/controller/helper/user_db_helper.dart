@@ -74,6 +74,7 @@ class UserDbHelper {
       userModel.age,
       userModel.gender,
       userModel.profilePicture,
+      userModel.id,
     ];
 
     final query = '''UPDATE $_tableUsers SET 

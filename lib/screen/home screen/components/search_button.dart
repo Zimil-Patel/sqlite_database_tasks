@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sqlite_database_tasks/main.dart';
 import 'package:sqlite_database_tasks/screen/search%20screen/search_screen.dart';
 
 import '../../../theme/theme_data.dart';
@@ -15,7 +16,8 @@ class SearchButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoButton(
       padding: EdgeInsets.zero,
-      onPressed: () {
+      onPressed: () async {
+        await controller.fetchRecords();
         Get.to(() => const SearchScreen());
       },
       child: Hero(

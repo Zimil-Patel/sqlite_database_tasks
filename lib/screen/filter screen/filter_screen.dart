@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../main.dart';
-import '../home screen/components/expense_list_view.dart';
+import 'package:sqlite_database_tasks/screen/filter%20screen/components/category_expense_listview.dart';
+import '../../controller/filter_controller.dart';
 import '../home screen/components/search_button.dart';
 import 'components/category_list_view.dart';
+
+FilterController filterController = Get.put(FilterController());
 
 class FilterScreen extends StatelessWidget {
   const FilterScreen({super.key});
@@ -40,8 +42,8 @@ class FilterScreen extends StatelessWidget {
 
             // SELECTED CATEGORY RESULT
             Obx(
-              () => controller.expenseList.isNotEmpty
-                  ? ExpenseListView(controller: controller)
+              () => filterController.categoryList.isNotEmpty
+                  ? CategoryExpenseListview(controller: filterController)
                   : Center(
                       child: Text(
                         'No transaction found!',

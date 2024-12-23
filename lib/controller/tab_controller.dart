@@ -18,6 +18,7 @@ class TabsController extends GetxController {
         tabScreen = const HomeScreen();
         break;
       case 1:
+        filterController.setSelectedCategory(filterController.selectedCategory.value);
         tabScreen = const FilterScreen();
         break;
       case 2:
