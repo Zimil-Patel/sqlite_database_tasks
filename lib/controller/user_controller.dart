@@ -1,5 +1,8 @@
+import 'dart:typed_data';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:sqlite_database_tasks/model/user_model.dart';
 
 class UserController extends GetxController {
 
@@ -8,6 +11,8 @@ class UserController extends GetxController {
   TextEditingController txtEmail = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
   TextEditingController txtPhone = TextEditingController();
+  Uint8List? image;
+  RxList<UserModel> userList = <UserModel>[].obs;
 
   void clearController() {
     txtFirstName.clear();
@@ -16,6 +21,8 @@ class UserController extends GetxController {
     txtPassword.clear();
     txtPhone.clear();
   }
+
+
 
 
 }
