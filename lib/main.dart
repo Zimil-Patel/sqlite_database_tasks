@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sqlite_database_tasks/controller/home_controller.dart';
+import 'package:sqlite_database_tasks/controller/user_controller.dart';
 import 'package:sqlite_database_tasks/screen/home%20screen/home_screen.dart';
 import 'package:sqlite_database_tasks/screen/register%20screen/register_screen.dart';
+import 'package:sqlite_database_tasks/screen/tab%20screen/tab_screen.dart';
 import 'package:sqlite_database_tasks/theme/theme_data.dart';
 import 'package:sqlite_database_tasks/utils.dart';
 
@@ -11,11 +13,13 @@ import 'controller/tab_controller.dart';
 
 late HomeController controller;
 late TabsController tabController;
+late UserController userController;
 
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  controller = Get.put(HomeController());
+  controller = await Get.put(HomeController());
+  userController = await Get.put(UserController());
   tabController = Get.put(TabsController());
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent, // Transparent status bar
@@ -36,11 +40,12 @@ class DBApp extends StatelessWidget {
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
 
-    return GetMaterialApp(
-      theme: AppTheme.darkTheme,
-      debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
-
+    return Obx(
+      () =>  GetMaterialApp(
+        theme: AppTheme.darkTheme,
+        debugShowCheckedModeBanner: false,
+        home: userController.isRegistered.value ? const TabScreen() : const RegisterScreen(),
+      ),
     );
   }
 }

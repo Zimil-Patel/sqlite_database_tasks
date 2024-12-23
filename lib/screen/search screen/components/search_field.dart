@@ -16,7 +16,7 @@ Expanded searchField(BuildContext context) {
           cursorColor:
           Theme.of(context).colorScheme.onSurface,
           onChanged: (value){
-            controller.fetchFilterRecordByCategorySearch(value);
+            controller.fetchFilterRecordBySearch(value);
           },
           decoration: InputDecoration(
             hintText: 'Search category...',

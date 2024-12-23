@@ -58,7 +58,7 @@ class TabScreen extends StatelessWidget {
                     child: CupertinoButton(
                       padding: EdgeInsets.zero,
                       onPressed: () {
-                        Get.to(() => const AddScreen());
+                        Get.to(() => const AddScreen(), arguments: {'isForEditing' : false});
                       },
                       child: Hero(
                         tag: 'addScreen',

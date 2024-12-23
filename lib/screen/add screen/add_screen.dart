@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sqlite_database_tasks/main.dart';
+import 'package:sqlite_database_tasks/model/expense_model.dart';
 import 'package:sqlite_database_tasks/utils.dart';
 
 import 'components/add_record_button.dart';
@@ -11,6 +14,14 @@ class AddScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var arguments = Get.arguments;
+    bool isForEditing = arguments['isForEditing'];
+    if(isForEditing){
+      ExpenseModel model = arguments['model'];
+      controller.setController(model);
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(

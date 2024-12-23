@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../../main.dart';
+import '../home screen/components/expense_list_view.dart';
 import '../home screen/components/search_button.dart';
 import 'components/category_list_view.dart';
 
@@ -22,24 +26,31 @@ class FilterScreen extends StatelessWidget {
             ],
           ),
         ),
-
         actions: const [
           SearchButton(),
         ],
       ),
 
-
       // BODY
       body: SingleChildScrollView(
         child: Column(
           children: [
-
             // CATEGORY LIST
-            CategoryListView(),
-
+            const CategoryListView(),
 
             // SELECTED CATEGORY RESULT
-
+            Obx(
+              () => controller.expenseList.isNotEmpty
+                  ? ExpenseListView(controller: controller)
+                  : Center(
+                      child: Text(
+                        'No transaction found!',
+                        style: GoogleFonts.varelaRound(
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+            ),
           ],
         ),
       ),

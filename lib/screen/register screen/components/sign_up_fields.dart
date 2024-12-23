@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:path/path.dart';
+import 'package:sqlite_database_tasks/main.dart';
 import 'package:sqlite_database_tasks/screen/register%20screen/components/sign_up_button.dart';
 import 'package:sqlite_database_tasks/utils.dart';
 
@@ -8,7 +11,7 @@ import 'custom_text_field.dart';
 import 'divider_with_or_text.dart';
 import 'google_apple_button.dart';
 
-Widget singUpFields() {
+Widget singUpFields(BuildContext context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -17,6 +20,7 @@ Widget singUpFields() {
           // FIRST NAME
           Expanded(
             child: buildTextField(
+              controller: userController.txtFirstName,
               icon: Icons.person,
               hintText: 'First Name',
             ),
@@ -28,6 +32,7 @@ Widget singUpFields() {
           // LAST NAME
           Expanded(
             child: buildTextField(
+              controller: userController.txtLastName,
               icon: Icons.person_outline,
               hintText: 'Last Name',
             ),
@@ -37,6 +42,7 @@ Widget singUpFields() {
 
       // EMAIL
       buildTextField(
+        controller: userController.txtEmail,
         icon: Icons.email,
         hintText: 'Email',
         keyboardType: TextInputType.emailAddress,
@@ -44,13 +50,14 @@ Widget singUpFields() {
 
       // PASSWORD
       buildTextField(
+        controller: userController.txtPassword,
         icon: Icons.lock,
         hintText: 'Password',
-        isObscure: true,
       ),
 
       // MOBILE NUMBER
       buildTextField(
+        controller: userController.txtPhone,
         icon: Icons.phone,
         hintText: 'Mobile Number',
         keyboardType: TextInputType.phone,
@@ -59,7 +66,7 @@ Widget singUpFields() {
       const SizedBox(height: 32),
 
       // SIGNUP BUTTONS
-      signUpButton(),
+      signUpButton(context),
 
       const SizedBox(height: 16),
 
@@ -82,7 +89,7 @@ Widget singUpFields() {
             ),
             CupertinoButton(
               padding: EdgeInsets.zero,
-              onPressed: () {  },
+              onPressed: () {},
               child: Text(
                 'Sign in',
                 style: GoogleFonts.poppins(

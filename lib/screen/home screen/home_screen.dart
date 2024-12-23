@@ -27,24 +27,31 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: defPadding),
-                  child: CircleAvatar(
-                    radius: height * 0.027,
-                    backgroundImage:
-                        const AssetImage('assets/images/profile.png'),
+                  child: Obx(
+                    () => CircleAvatar(
+                      radius: height * 0.027,
+                      backgroundImage:
+                          userController.userList[0].profilePicture != null
+                              ? MemoryImage(
+                                  userController.userList[0].profilePicture!)
+                              : const AssetImage('assets/images/profile.png'),
+                    ),
                   ),
                 ),
-                Text(
-                  'StaR BoY',
-                  style: GoogleFonts.varelaRound(
-                    fontSize: height * 0.024,
-                    fontWeight: FontWeight.bold,
-                    shadows: const [
-                      Shadow(
-                        color: Colors.black54,
-                        blurRadius: 10,
-                        offset: Offset(2, 2),
-                      ),
-                    ],
+                Obx(
+                  () => Text(
+                    "${userController.userList[0].firstName} ${userController.userList[0].lastName} ",
+                    style: GoogleFonts.varelaRound(
+                      fontSize: height * 0.024,
+                      fontWeight: FontWeight.bold,
+                      shadows: const [
+                        Shadow(
+                          color: Colors.black54,
+                          blurRadius: 10,
+                          offset: Offset(2, 2),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 const Spacer(),

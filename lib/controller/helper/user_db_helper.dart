@@ -55,6 +55,7 @@ class UserDbHelper {
 
     try {
       final result = await db.rawQuery(query);
+      log("FETCHED USERS...");
       return result;
     } catch (e) {
       log("FAILED TO FETCH FROM $_tableUsers!!! : $e");
@@ -74,6 +75,7 @@ class UserDbHelper {
       userModel.gender,
       userModel.profilePicture,
     ];
+
     final query = '''UPDATE $_tableUsers SET 
       $_firstName = ?,
       $_lastName = ?,
@@ -81,6 +83,14 @@ class UserDbHelper {
       $_phoneNumber = ?,
       $_age = ?,
       $_gender = ?,
-    ''';
+      $_profilePicture = ?
+      WHERE $_id = ?''';
+
+    try{
+      final result = await db.rawUpdate(query, args);
+      log("UPDATE STATUS: $result");
+    } catch(e) {
+      log("FAILED TO UPDATE $_tableUsers : $e");
+    }
   }
 }

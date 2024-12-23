@@ -3,7 +3,7 @@ import 'dart:typed_data';
 class UserModel {
   final String firstName, lastName, email, password, phoneNumber;
   Uint8List? profilePicture;
-  int? age;
+  String? age;
   String? gender;
 
   UserModel({
@@ -18,11 +18,11 @@ class UserModel {
   });
 
   factory UserModel.fromDb(Map map) => UserModel(
-        firstName: map['firstName'],
-        lastName: map['lastName'],
-        email: map['email'],
-        password: map['password'],
-        phoneNumber: map['phoneNumber'],
+        firstName: map['firstName'] ?? "Not set",
+        lastName: map['lastName'] ?? "Not set",
+        email: map['email'] ?? "Not set",
+        password: map['password'] ?? "Not set",
+        phoneNumber: map['phoneNumber'] ?? "Not set",
         age: map['age'],
         gender: map['gender'],
         profilePicture: map['profilePicture'],

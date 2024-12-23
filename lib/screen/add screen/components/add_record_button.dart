@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:sqlite_database_tasks/main.dart';
+import 'package:sqlite_database_tasks/model/expense_model.dart';
 import 'package:sqlite_database_tasks/theme/theme_data.dart';
 import 'package:sqlite_database_tasks/utils.dart';
 
@@ -8,7 +12,24 @@ Center addRecordButton() {
     child: Padding(
       padding: const EdgeInsets.all(defPadding * 2),
       child: CupertinoButton(
-        onPressed: () {},
+        onPressed: () {
+          DateTime dateTime = DateTime.now();
+          final String date = DateFormat('dd/mm/yyyy').format(dateTime);
+          Map map = {
+            'amount' : double.parse(controller.txtAmount.text),
+            'category' : expenseCategories[controller.selectedCat.value]['name'],
+            'description' : controller.txtDescription.text,
+            'isIncome' : controller.isIncome.value,
+            'date' : date,
+          };
+
+          final ExpenseModel model = ExpenseModel.fromDb(map);
+
+          controller.insertRecord(model);
+          controller.resetControllers();
+          Get.back();
+
+        },
         padding: EdgeInsets.zero,
         child: Container(
           padding: const EdgeInsets.symmetric(

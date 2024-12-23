@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sqlite_database_tasks/main.dart';
 import 'package:sqlite_database_tasks/theme/theme_data.dart';
 
 import '../../../utils.dart';
-
 
 class TransactionTypeRadio extends StatelessWidget {
   const TransactionTypeRadio({
@@ -12,10 +13,10 @@ class TransactionTypeRadio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: defPadding, vertical: defPadding * 1.5),
+      padding: const EdgeInsets.symmetric(
+          horizontal: defPadding, vertical: defPadding * 1.5),
       child: Column(
         children: [
-
           // HEADING
           Row(
             children: [
@@ -43,42 +44,61 @@ class TransactionTypeRadio extends StatelessWidget {
                   child: Row(
                     children: [
                       Flexible(
-                        child: Radio<int>(
-                          value: 0,
-                          groupValue: 0,
-                          onChanged: (value){},
-                          activeColor: third,
+                        child: Obx(
+                          () => Radio(
+                            value: 1,
+                            groupValue: controller.isIncome.value,
+                            onChanged: (value) {
+                              controller.setIsIncomeSwitch(value!);
+                            },
+                            activeColor: third,
+                          ),
                         ),
                       ),
-                      const SizedBox(width: defPadding / 2,),
-                      Flexible(child: Text('Income', style: TextStyle(fontSize: height * 0.019), overflow: TextOverflow.ellipsis,)),
+                      const SizedBox(
+                        width: defPadding / 2,
+                      ),
+                      Flexible(
+                          child: Text(
+                        'Income',
+                        style: TextStyle(fontSize: height * 0.019),
+                        overflow: TextOverflow.ellipsis,
+                      )),
                     ],
                   ),
                 ),
 
-                const SizedBox(width: defPadding / 2,),
-
+                const SizedBox(
+                  width: defPadding / 2,
+                ),
 
                 Expanded(
                   child: Row(
                     children: [
                       Flexible(
-                        child: Radio<int>(
-                          value: 1,
-                          groupValue: 0,
-                          onChanged: (value){},
-                          activeColor: third,
+                        child: Obx(
+                          () => Radio(
+                            value: 0,
+                            groupValue: controller.isIncome.value,
+                            onChanged: (value) {
+                              controller.setIsIncomeSwitch(value!);
+                            },
+                            activeColor: third,
+                          ),
                         ),
                       ),
-                      const SizedBox(width: defPadding / 2,),
-                      Flexible(child: Text('Expense', style: TextStyle(fontSize: height * 0.019),overflow: TextOverflow.ellipsis)),
+                      const SizedBox(
+                        width: defPadding / 2,
+                      ),
+                      Flexible(
+                          child: Text('Expense',
+                              style: TextStyle(fontSize: height * 0.019),
+                              overflow: TextOverflow.ellipsis)),
                     ],
                   ),
                 ),
 
-
                 // EXPENSE
-
               ],
             ),
           ),

@@ -8,10 +8,12 @@ Widget buildTextField({
   required String hintText,
   TextInputType keyboardType = TextInputType.text,
   bool isObscure = false,
+  required TextEditingController controller,
 }) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: defPadding / 1.5),
     child: TextField(
+      controller: controller,
       obscureText: isObscure,
       keyboardType: keyboardType,
       cursorColor: third,

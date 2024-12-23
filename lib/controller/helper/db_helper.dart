@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:sqlite_database_tasks/model/expense_model.dart';
 
 class DbHelper {
   // SINGLETON OBJECT
@@ -17,7 +18,6 @@ class DbHelper {
   final String _date = 'date';
   final String _description = 'description';
 
-
   // USER TABLE
   final String _tableUsers = 'users';
   final String _firstName = 'firstName';
@@ -28,7 +28,6 @@ class DbHelper {
   final String _gender = 'gender';
   final String _age = 'age';
   final String _profilePicture = 'profilePicture';
-
 
   static final DbHelper dbHelper = DbHelper._instance();
   Database? _myDb;
@@ -44,7 +43,6 @@ class DbHelper {
     _myDb = await createDatabase();
     return _myDb!;
   }
-
 
   Future<void> deleteDatabaseFile() async {
     log('Deleting database...');
@@ -84,7 +82,7 @@ class DbHelper {
         }
 
         final query2 = '''CREATE TABLE $_tableUsers(
-          $_id INTEGER AUTOINCREMENT PRIMARY KEY,
+          $_id INTEGER PRIMARY KEY AUTOINCREMENT,
           $_firstName TEXT,
           $_lastName TEXT,
           $_email TEXT,
@@ -108,19 +106,20 @@ class DbHelper {
   }
 
   // INSERT RECORD IN DATABASE
-  Future<void> dbInsertRecord({
-    required double amt,
-    required String category,
-    required int isIncome,
-    required String date,
-  }) async {
+  Future<void> dbInsertRecord(ExpenseModel expenseModel) async {
     Database db = await myDb;
-
-    List args = [amt, category, isIncome, date];
+    int isIncome = expenseModel.isIncome ? 1 : 0;
+    List args = [
+      expenseModel.amount,
+      expenseModel.category,
+      expenseModel.description,
+      isIncome,
+      expenseModel.date
+    ];
 
     String query = '''INSERT INTO $_tableName
-    ($_amount, $_category, $_isIncome, $_date)
-    VALUES (?,?,?,?)
+    ($_amount, $_category, $_description, $_isIncome, $_date)
+    VALUES (?,?,?,?,?)
     ''';
 
     try {
@@ -163,27 +162,28 @@ class DbHelper {
   }
 
   // UPDATE RECORD
-  Future<void> dbUpdateRecord({
-    required int id,
-    required double amt,
-    required String category,
-    required int isIncome,
-    required String date,
-  }) async {
+  Future<void> dbUpdateRecord(ExpenseModel expenseModel) async {
     Database db = await myDb;
+    int isIncome = expenseModel.isIncome ? 1 : 0;
+    List args = [
+      expenseModel.amount,
+      expenseModel.category,
+      expenseModel.description,
+      isIncome,
+      expenseModel.date
+    ];
 
     final String query = '''UPDATE $_tableName SET $_amount = ?, 
     $_category = ?, 
+    $_description = ?,
     $_isIncome = ?, 
     $_date = ? 
     WHERE $_id = ?''';
 
-    List args = [amt, category, isIncome, date, id];
-
-    try{
+    try {
       final result = await db.rawUpdate(query, args);
       log("Update status : $result");
-    } catch(e) {
+    } catch (e) {
       log("Failed to update in table!!! : $e");
     }
   }
@@ -194,7 +194,7 @@ class DbHelper {
 
     String query = '''SELECT * FROM $_tableName WHERE $_isIncome = $isIncome''';
 
-    try{
+    try {
       final result = await db.rawQuery(query);
       log("Fetch status for $isIncome: $result");
       return result;
@@ -209,13 +209,32 @@ class DbHelper {
   Future<List<Map<String, Object?>>> dbFetchBySearch(String searchValue) async {
     Database db = await myDb;
 
-    String query = "SELECT * FROM $_tableName WHERE $_category LIKE '$searchValue%'";
+    String query =
+        "SELECT * FROM $_tableName WHERE $_category LIKE '$searchValue%' OR $_description LIKE '%$searchValue%'";
 
-    try{
+    try {
       final result = await db.rawQuery(query);
       log("Fetch status for $searchValue : $result");
       return result;
-    } catch(e){
+    } catch (e) {
+      log("Failed to fetch from table for $searchValue : $e");
+    }
+
+    return [];
+  }
+
+  // FILTER BY SEARCH
+  Future<List<Map<String, Object?>>> dbFetchByCategory(String searchValue) async {
+    Database db = await myDb;
+
+    String query =
+        "SELECT * FROM $_tableName WHERE $_category LIKE '$searchValue'";
+
+    try {
+      final result = await db.rawQuery(query);
+      log("Fetch status for $searchValue : $result");
+      return result;
+    } catch (e) {
       log("Failed to fetch from table for $searchValue : $e");
     }
 
