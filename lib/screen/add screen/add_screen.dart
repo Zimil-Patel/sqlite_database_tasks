@@ -7,6 +7,7 @@ import 'package:sqlite_database_tasks/utils.dart';
 import 'components/add_record_button.dart';
 import 'components/amount_des_text_field.dart';
 import 'components/categories_grid_view.dart';
+import 'components/save_delete_button.dart';
 import 'components/transaction_type_radio.dart';
 
 class AddScreen extends StatelessWidget {
@@ -17,9 +18,10 @@ class AddScreen extends StatelessWidget {
 
     var arguments = Get.arguments;
     bool isForEditing = arguments['isForEditing'];
+    ExpenseModel? model;
     if(isForEditing){
-      ExpenseModel model = arguments['model'];
-      controller.setController(model);
+      model = arguments['model'];
+      controller.setController(model!);
     }
 
     return Scaffold(
@@ -38,55 +40,52 @@ class AddScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Hero(
-        tag: 'addScreen',
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              // AMOUNT
-              buildAmountDesTextField(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // AMOUNT
+            buildAmountDesTextField(),
 
-              // IS INCOME OR EXPENSE
-              const TransactionTypeRadio(),
+            // IS INCOME OR EXPENSE
+            const TransactionTypeRadio(),
 
-              // CATEGORY
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // HEADING
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: defPadding),
-                    child: Row(
-                      children: [
-                        const Icon(Icons.category_rounded),
-                        const SizedBox(
-                          width: defPadding,
+            // CATEGORY
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // HEADING
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: defPadding),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.category_rounded),
+                      const SizedBox(
+                        width: defPadding,
+                      ),
+                      Expanded(
+                        child: Text(
+                          'Select category',
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
-                        Expanded(
-                          child: Text(
-                            'Select category',
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
+                ),
 
-                  const SizedBox(
-                    height: defPadding,
-                  ),
+                const SizedBox(
+                  height: defPadding,
+                ),
 
-                  // LIST OF CATEGORIES
-                  const CategoriesGridView(),
+                // LIST OF CATEGORIES
+                const CategoriesGridView(),
 
-                  // CATEGORY LIST ICONS
-                ],
-              ),
+                // CATEGORY LIST ICONS
+              ],
+            ),
 
-              // SAVE RECORD BUTTON
-              addRecordButton(),
-            ],
-          ),
+            // SAVE RECORD BUTTON
+            isForEditing ? saveAndDeleteButton(model!, context) : addRecordButton(),
+          ],
         ),
       ),
     );

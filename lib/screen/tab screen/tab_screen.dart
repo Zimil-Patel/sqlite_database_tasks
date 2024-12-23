@@ -47,7 +47,7 @@ class TabScreen extends StatelessWidget {
                         Spacer(
                           flex: 5,
                         ),
-                        TabIcon(icon: Icons.settings, index: 2,),
+                        TabIcon(icon: Icons.person, index: 2,),
                         Spacer(flex: 1,),
                         TabIcon(icon: Icons.bar_chart, index: 3,),
                       ],
@@ -58,18 +58,17 @@ class TabScreen extends StatelessWidget {
                     child: CupertinoButton(
                       padding: EdgeInsets.zero,
                       onPressed: () {
+                        controller.resetControllers();
+
                         Get.to(() => const AddScreen(), arguments: {'isForEditing' : false});
                       },
-                      child: Hero(
-                        tag: 'addScreen',
-                        child: CircleAvatar(
-                          radius: height * 0.032,
-                          backgroundColor: Theme.of(context).colorScheme.primary,
-                          child: Icon(
-                            Icons.add,
-                            size: height * 0.03,
-                            color: Colors.white,
-                          ),
+                      child: CircleAvatar(
+                        radius: height * 0.032,
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        child: Icon(
+                          Icons.add,
+                          size: height * 0.03,
+                          color: Colors.white,
                         ),
                       ),
                     ),

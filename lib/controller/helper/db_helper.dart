@@ -165,12 +165,13 @@ class DbHelper {
   Future<void> dbUpdateRecord(ExpenseModel expenseModel) async {
     Database db = await myDb;
     int isIncome = expenseModel.isIncome ? 1 : 0;
+    log("Expense id: ${expenseModel.id}");
     List args = [
       expenseModel.amount,
       expenseModel.category,
       expenseModel.description,
       isIncome,
-      expenseModel.date
+      expenseModel.date,
     ];
 
     final String query = '''UPDATE $_tableName SET $_amount = ?, 
@@ -178,7 +179,7 @@ class DbHelper {
     $_description = ?,
     $_isIncome = ?, 
     $_date = ? 
-    WHERE $_id = ?''';
+    WHERE $_id =  ${expenseModel.id}''';
 
     try {
       final result = await db.rawUpdate(query, args);
