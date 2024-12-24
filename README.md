@@ -74,15 +74,24 @@ Displays and manages expense-related operations.
 <img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap1.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
 <img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap2.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
 <img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap3.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<br>
 <img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap4.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
 <img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap5.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
 <img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap6.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<br>
 <img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap7.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
 <img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap8.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
 <img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap9.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<br>
 <img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap10.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
 <img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap11.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
 <img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap12.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<br>
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap13.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
 
 
 </div>
