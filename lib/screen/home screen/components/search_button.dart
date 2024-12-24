@@ -18,6 +18,7 @@ class SearchButton extends StatelessWidget {
       padding: EdgeInsets.zero,
       onPressed: () async {
         await controller.fetchRecords();
+        controller.txtSearch.clear();
         Get.to(() => const SearchScreen());
       },
       child: Hero(

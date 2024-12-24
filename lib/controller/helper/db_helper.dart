@@ -197,7 +197,7 @@ class DbHelper {
 
     try {
       final result = await db.rawQuery(query);
-      log("Fetch status for $isIncome: $result");
+      // log("Fetch status for $isIncome: $result");
       return result;
     } catch (e) {
       log("Failed to fetch from table for $isIncome: $e");
