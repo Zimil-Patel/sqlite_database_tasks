@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:sqlite_database_tasks/main.dart';
 import 'package:sqlite_database_tasks/model/expense_model.dart';
 import 'package:sqlite_database_tasks/theme/theme_data.dart';
@@ -14,7 +13,7 @@ Center addRecordButton() {
       child: CupertinoButton(
         onPressed: () {
           DateTime dateTime = DateTime.now();
-          final String date = DateFormat('dd/mm/yyyy').format(dateTime);
+          final String date = "${dateTime.day}/${dateTime.month}/${dateTime.year}";
           Map map = {
             'amount' : double.parse(controller.txtAmount.text),
             'category' : expenseCategories[controller.selectedCat.value]['name'],

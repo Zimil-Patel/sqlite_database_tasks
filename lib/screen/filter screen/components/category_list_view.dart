@@ -29,8 +29,8 @@ class CategoryListView extends StatelessWidget {
             },
             child: Obx(
               () => Container(
-                width: 90,
-                margin: const EdgeInsets.symmetric(horizontal: defPadding / 1),
+                width: 100,
+                margin: const EdgeInsets.symmetric(horizontal: defPadding / 1.2),
                 padding: const EdgeInsets.all(defPadding),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(14),
