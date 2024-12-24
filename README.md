@@ -1,101 +1,95 @@
-## ✔️ GetX - Flutter Expense Tracker (CRUD) [📂 (source)](https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/lib/controller/helper/db_helper.dart)
+## ✔️ GetX - Flutter Expense Tracker App (CRUD in sqflite)
 
 ## Overview
-A Flutter application that manages financial records using the **sqflite** and **getx** packages. The application includes functionalities to perform CRUD operations, filter records, and calculate financial statistics such as total balance, profit, and expenses.
+The Flutter Expense Tracker App is a comprehensive solution for managing personal finances. It provides functionalities such as user registration, profile updates, expense management, and financial insights. The app uses the `sqflite` package for local database management and incorporates shared preferences for user session handling.
 
 ---
 
 ## Features
-- **Create Records:** Insert records with the current date, amount, income/expense type, and category.
-- **Read Records:** Fetch all records or filter them based on specific criteria.
-- **Update Records:** Modify existing records.
-- **Delete Records:** Remove specific records from the database.
-- **Calculate Totals:** Compute total balance, profit, and expenses dynamically.
+
+### 1. User Management
+- **Register Screen**:
+  - Users can register their details.
+  - Data is stored using SharedPreferences and Sqflite for permanent storage.
+- **Edit/Update User Profile**:
+  - Users can modify their profile details.
+  - Changes are updated permanently in the database.
+
+### 2. Expense Management
+- **Add Expenses**:
+  - Users can insert new expense records into the database.
+- **Update Expenses**:
+  - Existing expense records can be modified.
+- **Delete Expenses**:
+  - Users can remove unwanted expense records permanently.
+- **Fetch Expenses**:
+  - Retrieve all expenses stored in the database.
+
+### 3. Data Filtering
+- **Search and Category Filters**:
+  - Filter records by keywords or specific categories.
+- **Income, Expense, and All Filters**:
+  - Filter data by income, expenses, or view all transactions.
+
+### 4. Financial Calculations
+- **Balance**:
+  - Calculate the net balance based on income and expenses.
+- **Expense**:
+  - Total expense amount is calculated dynamically.
+- **Profit**:
+  - Determine profit or savings.
 
 ---
 
 ## Packages Used
-- [get](https://pub.dev/packages/get): For state management and navigation.
-- [sqflite](https://pub.dev/packages/sqflite): For local SQLite database management.
+The project incorporates the following Flutter packages:
+
+| Package Name               | Version |
+|----------------------------|---------|
+| cupertino_icons            | ^1.0.8  |
+| get                        | ^4.6.6  |
+| sqflite                    | ^2.4.1  |
+| path                       | ^1.9.0  |
+| blurrycontainer            | any     |
+| shared_preferences         | any     |
+| intl                       | any     |
+| image_picker               | any     |
+| google_fonts               | any     |
+| font_awesome_flutter       | any     |
 
 ---
 
-## Setup Instructions
 
-### Prerequisites
-Ensure you have the following installed:
-- Flutter SDK
-- Dart
-- An IDE (e.g., Android Studio, Visual Studio Code)
+### Register Screen (`register_screen.dart`)
+Manages user registration and data persistence.
 
-## Features in Detail
+### Home Screen (`home_screen.dart`)
+Displays and manages expense-related operations.
 
-### Create Record
-- **Fields:**
-  - `date`: Automatically set to the current date.
-  - `amount`: User input.
-  - `isIncome`: Boolean (true for income, false for expense).
-  - `category`: User-selected category.
-- **Example:**
-```dart
-RecordController.insertRecord(
-  amount: 1000,
-  isIncome: true,
-  category: 'Salary',
-);
-```
-
-### Read Records
-- Fetch all records or filtered records by date, category, or income/expense type.
-- **Example:**
-```dart
-List<Record> records = await RecordController.fetchRecords();
-```
-
-### Update Record
-- Modify any field of an existing record.
-- **Example:**
-```dart
-RecordController.updateRecord(
-  id: 1,
-  amount: 1200,
-  category: 'Freelance',
-);
-```
-
-### Delete Record
-- Remove a specific record by its `id`.
-- **Example:**
-```dart
-RecordController.deleteRecord(id: 1);
-```
-
-### Calculate Totals
-- **Balance:** Total income - total expenses.
-- **Profit:** Sum of all income.
-- **Expense:** Sum of all expenses.
-- **Example:**
-```dart
-int balance = RecordController.calculateBalance();
-int profit = RecordController.calculateProfit();
-int expense = RecordController.calculateExpense();
-```
 
 ### Screenshots 📷
 
 <div align="left">
    
-<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap1-portrait.png" height = 590 width = 300> &nbsp;&nbsp;&nbsp;&nbsp;
-<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap2-portrait.png" height = 590 width = 300> &nbsp;&nbsp;&nbsp;&nbsp;
-<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap3-portrait.png" height = 590 width = 300> &nbsp;&nbsp;&nbsp;&nbsp;
-<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap4-portrait.png" height = 590 width = 300> &nbsp;&nbsp;&nbsp;&nbsp;
-<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap5-portrait.png" height = 590 width = 300> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap1.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap2.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap3.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap4.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap5.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap6.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap7.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap8.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap9.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap10.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap11.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
+<img src= "https://github.com/Zimil-Patel/sqlite_database_tasks/blob/master/snaps/snap12.png" height = 660 width = 310> &nbsp;&nbsp;&nbsp;&nbsp;
+
 
 </div>
 
 ### Video Preview 🎥
 
+https://github.com/user-attachments/assets/cd4aa6dd-e17a-4d88-bc31-c8721fd17f2e
 
-https://github.com/user-attachments/assets/8327a40a-15b8-4c29-a522-ec3a1a1b0d45
 
 
