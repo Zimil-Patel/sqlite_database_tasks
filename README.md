@@ -66,6 +66,7 @@ Manages user registration and data persistence.
 ### Home Screen (`home_screen.dart`)
 Displays and manages expense-related operations.
 
+🔗 [LinkedIn Post](https://www.linkedin.com/posts/zimil-patel_flutter-mobileappdevelopment-opensource-activity-7277142656332296192-geVy?utm_source=share&utm_medium=member_desktop)
 
 ### Screenshots 📷
 
